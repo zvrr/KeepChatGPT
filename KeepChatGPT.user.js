@@ -600,7 +600,7 @@
             }
         };
         const icon = GM_info.script.icon ? GM_info.script.icon : `${GM_info.script.namespace}raw/main/assets/logo.svg`;
-        ndivkcg._symbol1_innerHTML = `<img src='${icon}' />Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT by x${ndivkcg.id.slice(1,2)}anwin`;
+        ndivkcg._symbol1_innerHTML = `<img src='${icon}' />Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT setting`;
         ndivkcg._symbol2_innerHTML = `Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT`;
 
         if ($(symbol1_selector)) {
@@ -620,8 +620,10 @@
     const addStyle = function() {
         GM_addStyle(`
 .kgold {
+    // color: #555;
+    // background: linear-gradient(to top right, #F0B27A, #FDE184, #F0B27A);
     color: #555;
-    background: linear-gradient(to top right, #F0B27A, #FDE184, #F0B27A);
+    background: linear-gradient(to top right, #f9f9f9, #edebe7, #f3f1ef);
     animation: gradient 6s ease-in-out infinite;
     position: relative;
     overflow: hidden;
