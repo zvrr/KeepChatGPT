@@ -3,10 +3,10 @@
 // @description       这是一个ChatGPT的畅聊与增强插件。开源免费。不仅能解决所有报错不再刷新，还有保持活跃、取消审计、克隆对话、净化首页、展示大屏、展示全屏、言无不尽、拦截跟踪、日新月异等多个高级功能。让我们的AI体验无比顺畅、丝滑、高效、简洁。解决的报错如下: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com. (3) Conversation not found. (4) This content may violate our content policy.
 // @version           14.7
 // @author            xcanwin
-// @namespace         https://github.com/xcanwin/KeepChatGPT/
-// @supportURL        https://github.com/xcanwin/KeepChatGPT/
-// @updateURL         https://raw.githubusercontent.com/xcanwin/KeepChatGPT/main/KeepChatGPT.user.js
-// @downloadURL       https://raw.githubusercontent.com/xcanwin/KeepChatGPT/main/KeepChatGPT.user.js
+// @namespace         https://github.com/zvvr/KeepChatGPT/
+// @supportURL        https://github.com/zvvr/KeepChatGPT/
+// @updateURL         https://raw.githubusercontent.com/zvvr/KeepChatGPT/main/KeepChatGPT.user.js
+// @downloadURL       https://raw.githubusercontent.com/zvvr/KeepChatGPT/main/KeepChatGPT.user.js
 // @description:ar    هذا هو إضافة ChatGPT للدردشة السلسة. مفتوح المصدر ومجاني. ليس فقط يمكن حل جميع الأخطاء دون إعادة التحميل، ولكن لديه أيضًا مجموعة من الميزات المتقدمة مثل البقاء نشطًا، وإلغاء التدقيق، واستنساخ المحادثات، وتنقية الصفحة الرئيسية، وعرض الشاشة الكبيرة، وعرض الشاشة الكاملة، وغيرها الكثير. تجعل تجربة الذكاء الاصطناعي لدينا سلسة وسلسة وفعالة ومبسطة.
 // @description:bg    Това е разширение ChatGPT за безпроблемно чатиране. Отворен код и безплатен. Не само може да реши всички грешки без да се презареди, но също така предлага набор от напреднали функции като задържане на активност, отмяна на одита, клониране на разговори, почистване на началната страница, показване на голям екран, показване на цял екран и други. Нека опитът ни с изкуствен интелект бъде изключително гладък, ефективен и семпъл.
 // @description:cs    Toto je plugin ChatGPT pro plynulý chatování. Open-source a zdarma. Nejenže dokáže vyřešit veškeré chyby bez nutnosti obnovení, ale nabízí také řadu pokročilých funkcí, jako je udržování aktivity, zrušení auditu, klonování konverzací, vyčištění úvodní stránky, zobrazení na velké obrazovce, zobrazení na celou obrazovku a mnoho dalšího. Umožněte nám, aby naše zkušenost s umělou inteligencí byla bezproblémová, hladká, efektivní a jednoduchá.
@@ -187,9 +187,9 @@
     };
 
     const setIfr = function(u = "") {
-        if ($("#xcanwin") === null) {
+        if ($("#zvvr") === null) {
             const nIfr = document.createElement('iframe');
-            nIfr.id = "xcanwin";
+            nIfr.id = "zvvr";
             nIfr.style = `height: 80px; width: 100%; display: none;`;
             if (gv("k_showDebug", false) === true) {
                 nIfr.style.display = '';
@@ -200,12 +200,12 @@
                 nIfr.src = u;
             }
             nIfr.onload = function() {
-                const nIfrText = $("#xcanwin").contentWindow.document.documentElement.innerText;
+                const nIfrText = $("#zvvr").contentWindow.document.documentElement.innerText;
                 try {
-                    $("#xcanwin").contentWindow.document.documentElement.style = `background: #FCF3CF; height: 360px; width: 1080px; overflow; auto;`;
+                    $("#zvvr").contentWindow.document.documentElement.style = `background: #FCF3CF; height: 360px; width: 1080px; overflow; auto;`;
                     if (nIfrText.indexOf(`"expires":"`) > -1) {
                         console.log(`KeepChatGPT: IFRAME: Expire date: ${formatDate(JSON.parse(nIfrText).expires)}`);
-                        $("#xcanwin").contentWindow.document.documentElement.innerHTML = formatJson(nIfrText);
+                        $("#zvvr").contentWindow.document.documentElement.innerHTML = formatJson(nIfrText);
                     } else if (nIfrText.match(/Please stand by|while we are checking your browser|Please turn JavaScript on|Please enable Cookies|reload the page/)) {
                         console.log(`KeepChatGPT: IFRAME: BypassCF`);
                     }
@@ -216,7 +216,7 @@
             $("main").lastElementChild.appendChild(nIfr);
         } else{
             if (u) {
-                $("#xcanwin").src = u;
+                $("#zvvr").src = u;
             }
         }
     };
@@ -228,7 +228,7 @@
                     const contentType = response.headers.get('Content-Type');
                     if (contentType.indexOf("application/json") > -1 && response.status !== 403 && data.indexOf(`"expires":"`) > -1) {
                         console.log(`KeepChatGPT: FETCH: Expire date: ${formatDate(JSON.parse(data).expires)}`);
-                        $("#xcanwin").contentWindow.document.documentElement.innerHTML = formatJson(data);
+                        $("#zvvr").contentWindow.document.documentElement.innerHTML = formatJson(data);
                     } else {
                         setIfr(u);
                     }
@@ -334,10 +334,10 @@
 
         $('#nmenuid_sd').onclick = function() {
             if ($('.checkbutton', this).classList.contains('checked')) {
-                $('#xcanwin').style.display = 'none';
+                $('#zvvr').style.display = 'none';
                 sv("k_showDebug", false);
             } else {
-                $('#xcanwin').style.display = '';
+                $('#zvvr').style.display = '';
                 sv("k_showDebug", true);
             }
             $('.checkbutton', this).classList.toggle('checked');
@@ -476,7 +476,7 @@
 <br>· 如果你希望本项目持续维护、升级更多的功能
 <br>· 如果你希望鼓励、激励作者投入更多的时间精力提升项目，欢迎各位支持和鼓励本项目`, `更多鼓励方式`, function(t) {
                 window.open(`${GM_info.script.namespace}#赞赏`, '_blank');
-            }, `img`, `https://github.com/xcanwin/KeepChatGPT/raw/main/assets/appreciate_wechat.png`);
+            }, `img`, `https://github.com/zvvr/KeepChatGPT/raw/main/assets/appreciate_wechat.png`);
         };
 
         $('#nmenuid_ab').onclick = function() {
@@ -487,9 +487,9 @@
     const setUserOptions = function() {
         if (gv("k_showDebug", false) === true) {
             $('#nmenuid_sd .checkbutton').classList.add('checked');
-            $('#xcanwin').style.display = '';
+            $('#zvvr').style.display = '';
         } else {
-            $('#xcanwin').style.display = 'none';
+            $('#zvvr').style.display = 'none';
         }
 
         if (gv("k_theme", "light") === "light") {
