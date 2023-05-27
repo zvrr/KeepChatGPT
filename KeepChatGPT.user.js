@@ -573,7 +573,8 @@
                 kcg_html.innerHTML = kcg_html._symbol2_innerHTML;
                 symbol_prt = findParent($(symbol2_selector), ".sticky", 2);
             }
-            symbol_prt.insertBefore(kcg_html, symbol_prt.childNodes[0]);
+            // add to chat history buttom 
+            symbol_prt.insertBefore(kcg_html, symbol_prt.childNodes[3]);
             return;
         }
 
@@ -610,7 +611,7 @@
             symbol_prt = findParent($(symbol2_selector), ".sticky", 2);
         }
         kcg_html = ndivkcg;
-        symbol_prt.insertBefore(kcg_html, symbol_prt.childNodes[0]);
+        symbol_prt.insertBefore(kcg_html, symbol_prt.childNodes[3]);
 
         addStyle();
         setUserOptions();
